@@ -27,7 +27,16 @@ class BasicController : public Controller
   std::string name() const override;
 
  protected:
-  
+
+  bool contact_state_;
+  robot_model_;
+
+  invers
+  std::shared_ptr<SlidingModeSolver> sm_controller_;
+  std::shared_ptr<std::vector<joint_controllers>> joints_controllers_; 
+
+  TrackingRegulartor tr_regulator_;
+    
 
 }
 

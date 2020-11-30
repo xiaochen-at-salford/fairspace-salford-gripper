@@ -26,10 +26,12 @@ void BasicController::InitializedFilters(const ControlConf* control_conf)
 }
 
 Status LatController::Init(std::shared_ptr<DependencyInjector> injector,
-                           const ControlConf *control_conf) {
+                           const ControlConf *control_conf ) 
+{
   control_conf_ = control_conf;
   injector_ = injector;
-  if (!LoadControlConf(control_conf_)) {
+  if (!LoadControlConf(control_conf_)) 
+  {
     AERROR << "failed to load control conf";
     return Status(ErrorCode::CONTROL_COMPUTE_ERROR,
                   "failed to load control_conf");
@@ -124,6 +126,38 @@ Status BasicController::compute_control_command(
     const planning::DummnyTrajectory *dummny_trajectory,
     ControlCommand *cmd) 
 {
+  contact_state_ = update_contact_state();
+
+  switch (contact_state_)
+  {
+    case PreContactPhase:
+      grippter_set_point = get_latest_gripper_set_point();
+      servo_set_points = trk_regulator_.solve_robot_inverse_kinematics(gripper_set_point); 
+      servo_torque_command =trk_regulator_.compute 
+      break;
+    
+    case InContactPhase:
+      contact_state = get_gripper_contact_state()
+      grasping_effort = sm_control.compute(error);
+      servor_effort = inv_dyn.compute(grasping_effort);
+      apply_servo_command(servo_effort);
+      break;
+    
+    case PostContactPhase:
+      // report error?
+      break;
+  }
+  if (is_in_contact_)
+  {
+    /*
+     *
+     */
+    error = y2 - y1;
+    sigma = e + 0.2*(error*0.01F32);
+    u = sigma / (abs(sigma) + 100);
+
+  }
+
   auto vehicle_state = injector_->vehicle_state();
 
   auto target_tracking_trajectory = *planning_published_trajectory;

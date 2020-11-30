@@ -1,4 +1,6 @@
 .vscode/
+install/
 build/
 archive/
 third_party_local/
+temp/

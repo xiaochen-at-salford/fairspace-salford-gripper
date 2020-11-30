@@ -1,0 +1,35 @@
+# CMake generated Testfile for 
+# Source directory: /home/hhkb/catkin_ws/src/examples/fcl/test
+# Build directory: /home/hhkb/catkin_ws/build_isolated/fcl/devel/test
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+add_test(test_fcl_auto_diff "/test_fcl_auto_diff")
+add_test(test_fcl_box_box "/test_fcl_box_box")
+add_test(test_fcl_broadphase_collision_1 "/test_fcl_broadphase_collision_1")
+add_test(test_fcl_broadphase_collision_2 "/test_fcl_broadphase_collision_2")
+add_test(test_fcl_broadphase_distance "/test_fcl_broadphase_distance")
+add_test(test_fcl_bvh_models "/test_fcl_bvh_models")
+add_test(test_fcl_capsule_box_1 "/test_fcl_capsule_box_1")
+add_test(test_fcl_capsule_box_2 "/test_fcl_capsule_box_2")
+add_test(test_fcl_capsule_capsule "/test_fcl_capsule_capsule")
+add_test(test_fcl_cylinder_half_space "/test_fcl_cylinder_half_space")
+add_test(test_fcl_collision "/test_fcl_collision")
+add_test(test_fcl_constant_eps "/test_fcl_constant_eps")
+add_test(test_fcl_distance "/test_fcl_distance")
+add_test(test_fcl_frontlist "/test_fcl_frontlist")
+add_test(test_fcl_general "/test_fcl_general")
+add_test(test_fcl_generate_bvh_model_deferred_finalize "/test_fcl_generate_bvh_model_deferred_finalize")
+add_test(test_fcl_geometric_shapes "/test_fcl_geometric_shapes")
+add_test(test_fcl_math "/test_fcl_math")
+add_test(test_fcl_profiler "/test_fcl_profiler")
+add_test(test_fcl_shape_mesh_consistency "/test_fcl_shape_mesh_consistency")
+add_test(test_fcl_signed_distance "/test_fcl_signed_distance")
+add_test(test_fcl_simple "/test_fcl_simple")
+add_test(test_fcl_sphere_box "/test_fcl_sphere_box")
+add_test(test_fcl_sphere_capsule "/test_fcl_sphere_capsule")
+add_test(test_fcl_sphere_cylinder "/test_fcl_sphere_cylinder")
+add_test(test_fcl_sphere_sphere "/test_fcl_sphere_sphere")
+subdirs("geometry")
+subdirs("narrowphase")
+subdirs("broadphase")
