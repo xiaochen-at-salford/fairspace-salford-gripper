@@ -10,7 +10,7 @@ RUN usermod -aG sudo hhkb
 ENV DEBIAN_FRONTEND=noninteractive
 
 COPY docker/installers /home/hhkb/build/installers
-COPY docker/archive /home/hhkb/build/archive
+# COPY docker/archive /home/hhkb/build/archive
 
 # Preset hhkb
 ENV HHKB_SYSTEMROOT_DIR /opt/hhkb/sysroot

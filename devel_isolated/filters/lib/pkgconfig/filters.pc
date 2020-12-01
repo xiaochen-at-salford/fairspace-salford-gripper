@@ -1,8 +1,0 @@
-prefix=/home/hhkb/catkin_ws/devel_isolated/filters
-
-Name: filters
-Description: Description of filters
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

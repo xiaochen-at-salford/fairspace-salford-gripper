@@ -1,8 +1,0 @@
-prefix=/home/hhkb/catkin_ws/devel_isolated/pid
-
-Name: pid
-Description: Description of pid
-Version: 0.0.28
-Cflags: -I/home/hhkb/catkin_ws/devel_isolated/pid/include -I/home/hhkb/catkin_ws/src/examples/pid/include
-Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs message_runtime dynamic_reconfigure

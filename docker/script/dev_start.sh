@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
+# ROS_DEV_IMAG="xiaochenatsalford/fairspace:fairspace-ros-dev-melodic-ubuntu18.04"
+ROS_DEV_IMAG="fairspace-ros-dev-melodic-ubuntu18.04:latest"
+
+
 source "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)/scripts/salford.bashrc"
 info "Workspace toplevel dir: ${WS_ROOT}"
 
 CATKIN_ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
-ROS_DEV_IMAG="xiaochenatsalford/fairspace:fairspace-ros-dev-melodic-ubuntu18.04"
-# ROS_DEV_IMAG="fairspace-ros-dev-melodic-ubuntu18.04:latest"
 ROS_DEV_CNTN="fairspace_ros_dev"
 
 check_host_environment() 
