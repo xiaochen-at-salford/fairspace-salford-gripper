@@ -6,6 +6,7 @@
 #include <vector>
 
 #include "ros/ros.h"
+#include "ros/console.h"
 
 namespace fairspace {
 namespace common {

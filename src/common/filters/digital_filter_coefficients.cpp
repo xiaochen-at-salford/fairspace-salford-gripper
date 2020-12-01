@@ -3,6 +3,8 @@
 #include <cmath>
 #include <vector>
 
+#include "ros/console.h"
+
 namespace fairspace {
 namespace common {
 
@@ -41,7 +43,7 @@ void lp_first_order_coefficients(const double ts,
   // sanity check
   if (ts <= 0.0 || settling_time < 0.0 || dead_time < 0.0) 
   {
-    // AERROR << "time cannot be negative";
+    ROS_ERROR("time cannot be negative");
     return;
   }
 

@@ -2,8 +2,7 @@
 
 #include <cmath>
 
-// #include<ros/console.h>
-// #include "cyber/common/log.h"
+#include<ros/console.h>
 
 namespace {
 const double kDoubleEpsilon = 1.0e-6;
@@ -40,14 +39,14 @@ void DigitalFilter::set_coefficients(const std::vector<double>& denominators,
 void DigitalFilter::set_dead_zone(const double deadzone) 
 {
   dead_zone_ = std::fabs(deadzone);
-  // AINFO << "Setting digital filter dead zone = " << dead_zone_;
+  ROS_INFO("Setting digital filter dead zone = %f", dead_zone_);
 }
 
 double DigitalFilter::filter(const double x_insert) 
 {
   if (denominators_.empty() || numerators_.empty()) 
   {
-    // AERROR << "Empty denominators or numerators";
+    ROS_ERROR("Empty denominators or numerators");
     return 0.0;
   }
 
@@ -91,6 +90,7 @@ double DigitalFilter::compute(const std::deque<double>& values,
                               const std::vector<double>& coefficients,
                               const std::size_t coeff_start, const std::size_t coeff_end ) 
 {
+  //TODO
   // ACHECK(coeff_start<=coeff_end && coeff_end<coefficients.size());
   // ACHECK((coeff_end - coeff_start + 1) == values.size());
 

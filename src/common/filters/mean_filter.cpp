@@ -2,9 +2,7 @@
 
 #include <limits>
 
-// #include <ros/console.h>
 #include "ros/ros.h"
-// #include "cyber/common/log.h"
 
 namespace fairspace {
 namespace common {
@@ -49,6 +47,7 @@ const {
 
 double MeanFilter::update(const double measurement) 
 {
+  //TODO
   // ACHECK(initialized_);
   // CHECK_LE(values_.size(), window_size_);
   // CHECK_LE(min_candidates_.size(), window_size_);
@@ -75,11 +74,13 @@ bool MeanFilter::should_pop_oldest_candidate(const uint8 old_time)
 const {
   if (old_time < window_size_) 
   {
+    //TODO
     // CHECK_LE(time_, old_time + window_size_);
     return old_time + window_size_ == time_;
   } 
   else if (time_ < window_size_) 
   {
+    //TODO
     // CHECK_GE(old_time, time_ + window_size_);
     return old_time == time_ + window_size_;
   } 
