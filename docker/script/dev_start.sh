@@ -68,15 +68,12 @@ function main()
     setup_devices_and_mount_local_volumes local_volumes 
 
     info "Startarting \"${ROS_DEV_CNTN}\""
+    set -x
     local display="${DISPLAY:-:0}"    
     local host_name="dev-in-fairspace"
-    set -x
-
-    #TODO(xiaochen-at-salford): not ut hardcode the toplevel workspace path
-    local host_ws_to_docker_ws="-v  ${WS_ROOT}:/home/hhkb/catkin_ws:rw"
-    echo "Workspace dir: ${CATKIN_ROOT_DIR}"
-    echo "Workspace mapping: ${host_ws_to_docker_ws}"
     local local_host="$(hostname)"
+    local host_ws_to_docker_ws="-v  ${WS_ROOT}:/home/hhkb/catkin_ws:rw"
+
     docker run -itd \
         --privileged \
         -u hhkb \
@@ -95,8 +92,6 @@ function main()
         "${ROS_DEV_IMAG}" \
         /bin/bash
 
-        # -v "${local_workspace}:/home/hhkb/catkin_ws:rw" \
-        # -v /home/xiaochen/ws/fairspace-salford-gripper:/home/hhkb/catkin_ws:rw \
     if [[ $? -ne 0 ]]
     then
         error "Failed to start docker container \"${ROS_DEV_CNTN}\" based on \"${ROS_DEV_IMAG}\" "
