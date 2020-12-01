@@ -1,9 +1,7 @@
-#include "mean_filter.h"
-
+#include "../mean_filter.h"
 #include "gtest/gtest.h"
 
-namespace fairspace {
-namespace common {
+using namespace fairspace::common;
 
 class MeanFilterTest : public ::testing::Test 
 {
@@ -39,14 +37,14 @@ TEST_F(MeanFilterTest, OneNegativeNonZero)
 TEST_F(MeanFilterTest, TwoPositiveNonZeros) 
 {
   MeanFilter mean_filter(5);
-  mean_filter.Update(3.0);
+  mean_filter.update(3.0);
   EXPECT_DOUBLE_EQ(mean_filter.update(4.0), 3.5);
 }
 
 TEST_F(MeanFilterTest, TwoNegativeNonZeros) 
 {
   MeanFilter mean_filter(5);
-  mean_filter.Update(-3.0);
+  mean_filter.update(-3.0);
   EXPECT_DOUBLE_EQ(mean_filter.update(-4.0), -3.5);
 }
 
@@ -126,7 +124,8 @@ TEST_F(MeanFilterTest, AlmostScale)
   EXPECT_DOUBLE_EQ(mean_filter.update(5.0), 4.0);
 }
 
-TEST_F(MeanFilterTest, ToyExample) {
+TEST_F(MeanFilterTest, ToyExample) 
+{
   MeanFilter mean_filter(4);
   EXPECT_DOUBLE_EQ(mean_filter.update(5.0), 5.0);
   EXPECT_DOUBLE_EQ(mean_filter.update(3.0), 4.0);
@@ -138,7 +137,8 @@ TEST_F(MeanFilterTest, ToyExample) {
   EXPECT_DOUBLE_EQ(mean_filter.update(4.0), 3.0);
 }
 
-TEST_F(MeanFilterTest, GoodMinRemoval) {
+TEST_F(MeanFilterTest, GoodMinRemoval) 
+{
   MeanFilter mean_filter(2);
   EXPECT_DOUBLE_EQ(mean_filter.update(1.0), 1.0);
   EXPECT_DOUBLE_EQ(mean_filter.update(9.0), 5.0);
@@ -151,5 +151,10 @@ TEST_F(MeanFilterTest, GoodMinRemoval) {
   EXPECT_DOUBLE_EQ(mean_filter.update(2.0), 2.5);
 }
 
-}  // namespace common
-}  // namespace fairspace
+int main(int argc, char **argv)
+{
+  testing::InitGoogleTest(&argc, argv);
+  ros::init(argc, argv, "test_mean_filter");
+  ros::NodeHandle nh;
+  return RUN_ALL_TESTS();
+}

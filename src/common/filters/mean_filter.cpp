@@ -2,7 +2,8 @@
 
 #include <limits>
 
-#include <ros/console.h>
+// #include <ros/console.h>
+#include "ros/ros.h"
 // #include "cyber/common/log.h"
 
 namespace fairspace {
@@ -13,11 +14,12 @@ using TimedValue = std::pair<uint8, double>;
 
 const uint8 kMaxWindowSize = std::numeric_limits<uint8>::max() / 2;
 
-MeanFilter::MeanFilter(const uint8 window_size) : window_size_(window_size) 
+MeanFilter::MeanFilter(const uint8 window_size) 
+    : window_size_(window_size) 
 {
   //TODO: check the use of gtest
-  CHECK_GT(window_size_, 0);
-  CHECK_LE(window_size_, kMaxWindowSize);
+  // CHECK_GT(window_size_, 0);
+  // CHECK_LE(window_size_, kMaxWindowSize);
   initialized_ = true;
 }
 
@@ -47,10 +49,10 @@ const {
 
 double MeanFilter::update(const double measurement) 
 {
-  ACHECK(initialized_);
-  CHECK_LE(values_.size(), window_size_);
-  CHECK_LE(min_candidates_.size(), window_size_);
-  CHECK_LE(max_candidates_.size(), window_size_);
+  // ACHECK(initialized_);
+  // CHECK_LE(values_.size(), window_size_);
+  // CHECK_LE(min_candidates_.size(), window_size_);
+  // CHECK_LE(max_candidates_.size(), window_size_);
   ++time_;
   time_ %= static_cast<std::uint_fast8_t>(2 * window_size_);
   if (values_.size() == window_size_) 
@@ -73,12 +75,12 @@ bool MeanFilter::should_pop_oldest_candidate(const uint8 old_time)
 const {
   if (old_time < window_size_) 
   {
-    CHECK_LE(time_, old_time + window_size_);
+    // CHECK_LE(time_, old_time + window_size_);
     return old_time + window_size_ == time_;
   } 
   else if (time_ < window_size_) 
   {
-    CHECK_GE(old_time, time_ + window_size_);
+    // CHECK_GE(old_time, time_ + window_size_);
     return old_time == time_ + window_size_;
   } 
   else 
@@ -89,7 +91,7 @@ const {
 
 void MeanFilter::remove_earliest() 
 {
-  CHECK_EQ(values_.size(), window_size_);
+  // CHECK_EQ(values_.size(), window_size_);
   double removed = values_.front();
   values_.pop_front();
   sum_ -= removed;

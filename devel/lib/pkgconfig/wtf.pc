@@ -1,0 +1,8 @@
+prefix=/home/hhkb/catkin_ws/devel
+
+Name: wtf
+Description: Description of wtf
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

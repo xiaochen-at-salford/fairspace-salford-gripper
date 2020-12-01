@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(filters)
+project(wtf)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -9,7 +9,6 @@ project(filters)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
-  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -69,7 +68,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs
+#   std_msgs  # Or other packages containing msgs
 # )
 
 ################################################
@@ -103,8 +102,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES filters
-#  CATKIN_DEPENDS roscpp std_msgs
+#  LIBRARIES wtf
+#  CATKIN_DEPENDS roscpp
 #  DEPENDS system_lib
 )
 
@@ -119,10 +118,10 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-# Declare a C++ library
-add_library(mean_filter
-            mean_filter.cpp
-            mean_filter.h )
+## Declare a C++ library
+# add_library(${PROJECT_NAME}
+#   src/${PROJECT_NAME}/wtf.cpp
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -132,7 +131,7 @@ add_library(mean_filter
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/filters_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/wtf_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -196,28 +195,10 @@ add_library(mean_filter
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_filters.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_wtf.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
-#   target_link_libraries(mean_filter-test ${PROJECT_NAME})
+#   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
-# if (CATKIN_ENABLE_TESTING)
-#     add_rostest_gtest(test_mean_filter
-#                       test/mean_filter_test.cpp )
-#                     #   test/your_third_rostest.test
-#                     #   test/your_gtest_node.cpp )
-#     target_link_libraries(test_mean_filter ${catkin_LIBRARIES})
-# endif()
-
-catkin_add_gtest(mean_filter-test test/mean_filter_test.cpp)
-if(TARGET mean_filter-test)
-  target_link_libraries(mean_filter-test
-                        mean_filter
-                        gtest
-                        ${catkin_LIBRARIES} )
-  message("hi can you see me?")
-endif()
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-
-# catkin_add_gtest(test_mean_filter test/mean_filter_test.cpp)

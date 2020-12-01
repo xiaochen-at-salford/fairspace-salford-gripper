@@ -5,6 +5,8 @@
 #include <utility>
 #include <vector>
 
+#include "ros/ros.h"
+
 namespace fairspace {
 namespace common {
 
