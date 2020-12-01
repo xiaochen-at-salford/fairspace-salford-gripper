@@ -19,7 +19,7 @@ namespace common {
  * @param denominators Denominator coefficients for digital filter.
  * @param numerators Numerator coefficients for digital filter.
  */
-void LpfCoefficients(const double ts, 
+void lpf_coefficients(const double ts, 
                      const double cutoff_freq,
                      std::vector<double>* denominators,
                      std::vector<double>* numerators );
@@ -33,7 +33,7 @@ void LpfCoefficients(const double ts,
  * @param denominators Denominator coefficients for digital filter.
  * @param numerators Numerator coefficients for digital filter.
  */
-void LpFirstOrderCoefficients(const double ts, 
+void lp_first_order_coefficients(const double ts, 
                               const double settling_time,
                               const double dead_time,
                               std::vector<double>* denominators,

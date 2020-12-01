@@ -3,7 +3,7 @@
 #include <cmath>
 #include <vector>
 
-namespace farispace {
+namespace fairspace {
 namespace common {
 
 void lpf_coefficients(const double ts, 
