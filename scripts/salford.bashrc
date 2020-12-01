@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+WS_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CATKIN_ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)"
 CATKIN_IN_DOCKER=false
 
@@ -9,6 +10,7 @@ if [ -f /.dockerenv ]; then
   CATKIN_ROOT_DIR="/home/hhkb/catkin_ws"
 fi
 
+export WS_ROOT
 export CATKIN_ROOT_DIR="${WS_ROOT_DIR}"
 export CATKIN_IN_DOCKER="${WS_IN_DOCKER}"
 # export APOLLO_CACHE_DIR="${APOLLO_ROOT_DIR}/.cache"

@@ -3,6 +3,6 @@ prefix=/home/hhkb/catkin_ws/devel
 Name: pid
 Description: Description of pid
 Version: 0.0.28
-Cflags: -I/home/hhkb/catkin_ws/devel/include -I/home/hhkb/catkin_ws/src/examples/pid/include
+Cflags: -I/home/hhkb/catkin_ws/devel/include -I/home/hhkb/catkin_ws/src/pid/include
 Libs: -L${prefix}/lib 
 Requires: roscpp std_msgs message_runtime dynamic_reconfigure

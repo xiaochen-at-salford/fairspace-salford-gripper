@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-CATKIN_ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
-source "${CATKIN_ROOT_DIR}/scripts/salford.bashrc"
+source "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)/scripts/salford.bashrc"
+info "Workspace toplevel dir: ${WS_ROOT}"
 
+CATKIN_ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd -P)"
 ROS_DEV_IMAG="xiaochenatsalford/fairspace:fairspace-ros-dev-melodic-ubuntu18.04"
 # ROS_DEV_IMAG="fairspace-ros-dev-melodic-ubuntu18.04:latest"
 ROS_DEV_CNTN="fairspace_ros_dev"
-
 
 check_host_environment() 
 {
@@ -72,6 +72,10 @@ function main()
     local host_name="dev-in-fairspace"
     set -x
 
+    #TODO(xiaochen-at-salford): not ut hardcode the toplevel workspace path
+    local host_ws_to_docker_ws="-v  ${WS_ROOT}:/home/hhkb/catkin_ws:rw"
+    echo "Workspace dir: ${CATKIN_ROOT_DIR}"
+    echo "Workspace mapping: ${host_ws_to_docker_ws}"
     local local_host="$(hostname)"
     docker run -itd \
         --privileged \
@@ -83,14 +87,16 @@ function main()
         --add-host "${local_host}:127.0.0.1" \
         --hostname "${ROS_DEV_CNTN}" \
         --shm-size 1g \
-        -w /home/hhkb/catkin_ws \
         --hostname "${host_name}" \
-        -v /home/xiaochen/ws-fs/salford-gripper:/home/hhkb/catkin_ws:rw \
+        -w /home/hhkb/catkin_ws \
+        ${host_ws_to_docker_ws} \
         -v /dev/null:/dev/raw1394 \
         ${local_volumes} \
         "${ROS_DEV_IMAG}" \
         /bin/bash
 
+        # -v "${local_workspace}:/home/hhkb/catkin_ws:rw" \
+        # -v /home/xiaochen/ws/fairspace-salford-gripper:/home/hhkb/catkin_ws:rw \
     if [[ $? -ne 0 ]]
     then
         error "Failed to start docker container \"${ROS_DEV_CNTN}\" based on \"${ROS_DEV_IMAG}\" "
