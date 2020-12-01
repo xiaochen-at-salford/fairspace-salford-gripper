@@ -154,7 +154,7 @@ TEST_F(MeanFilterTest, GoodMinRemoval)
 int main(int argc, char **argv)
 {
   testing::InitGoogleTest(&argc, argv);
-  ros::init(argc, argv, "test_mean_filter");
+  ros::init(argc, argv, "mean_filter_test");
   ros::NodeHandle nh;
   return RUN_ALL_TESTS();
 }

@@ -2,13 +2,11 @@
 
 #include <cmath>
 
-#include<ros/console.h>
+// #include<ros/console.h>
 // #include "cyber/common/log.h"
 
 namespace {
-
 const double kDoubleEpsilon = 1.0e-6;
-
 }  // namespace
 
 namespace fairspace {
@@ -42,14 +40,14 @@ void DigitalFilter::set_coefficients(const std::vector<double>& denominators,
 void DigitalFilter::set_dead_zone(const double deadzone) 
 {
   dead_zone_ = std::fabs(deadzone);
-  AINFO << "Setting digital filter dead zone = " << dead_zone_;
+  // AINFO << "Setting digital filter dead zone = " << dead_zone_;
 }
 
 double DigitalFilter::filter(const double x_insert) 
 {
   if (denominators_.empty() || numerators_.empty()) 
   {
-    AERROR << "Empty denominators or numerators";
+    // AERROR << "Empty denominators or numerators";
     return 0.0;
   }
 
@@ -60,7 +58,7 @@ double DigitalFilter::filter(const double x_insert)
 
   y_values_.pop_back();
   const double yside = \
-      Compute(y_values_, denominators_, 1, denominators_.size() - 1);
+      compute(y_values_, denominators_, 1, denominators_.size() - 1);
 
   double y_insert = 0.0;
   if (std::fabs(denominators_.front()) > kDoubleEpsilon) 
@@ -69,7 +67,7 @@ double DigitalFilter::filter(const double x_insert)
   }
   y_values_.push_front(y_insert);
 
-  return UpdateLast(y_insert);
+  return update_last(y_insert);
 }
 
 void DigitalFilter::reset_values() 
@@ -93,8 +91,8 @@ double DigitalFilter::compute(const std::deque<double>& values,
                               const std::vector<double>& coefficients,
                               const std::size_t coeff_start, const std::size_t coeff_end ) 
 {
-  ACHECK(coeff_start<=coeff_end && coeff_end<coefficients.size());
-  ACHECK((coeff_end - coeff_start + 1) == values.size());
+  // ACHECK(coeff_start<=coeff_end && coeff_end<coefficients.size());
+  // ACHECK((coeff_end - coeff_start + 1) == values.size());
 
   double sum = 0.0;
   auto i = coeff_start;

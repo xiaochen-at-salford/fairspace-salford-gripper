@@ -124,6 +124,14 @@ add_library(mean_filter
             mean_filter.cpp
             mean_filter.h )
 
+add_library(digital_filter
+            digital_filter.cpp
+            digital_filter.h )
+
+add_library(digital_filter_coefficients
+            digital_filter_coefficients.cpp
+            digital_filter_coefficients.h )
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -210,11 +218,26 @@ add_library(mean_filter
 
 catkin_add_gtest(mean_filter-test test/mean_filter_test.cpp)
 if(TARGET mean_filter-test)
-  target_link_libraries(mean_filter-test
-                        mean_filter
-                        gtest
-                        ${catkin_LIBRARIES} )
-  message("hi can you see me?")
+    target_link_libraries(mean_filter-test
+                          mean_filter
+                          ${catkin_LIBRARIES} )
+endif()
+
+catkin_add_gtest(digital_filter-test test/digital_filter_test.cpp)
+if (TARGET digital_filter-test)
+    target_link_libraries(digital_filter-test
+                          digital_filter
+                          ${catkin_LIBRARIES} )
+
+endif()
+
+catkin_add_gtest(digital_filter_coefficients-test 
+                 test/digital_filter_coefficients_test.cpp)
+if (TARGET digital_filter_coefficients-test)
+    target_link_libraries(digital_filter_coefficients-test
+                          digital_filter_coefficients
+                          ${catkin_LIBRARIES} )
+
 endif()
 
 ## Add folders to be run by python nosetests

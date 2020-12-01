@@ -2,8 +2,8 @@
 
 #include <vector>
 
-#include <ros/console.h>
-#include "cyber/common/log.h"
+// #include <ros/console.h>
+// #include "cyber/common/log.h"
 
 /**
  * @namespace apollo::common

@@ -7,9 +7,9 @@ namespace farispace {
 namespace common {
 
 void lpf_coefficients(const double ts, 
-                     const double cutoff_freq,
-                     std::vector<double>* denominators,
-                     std::vector<double>* numerators ) 
+                      const double cutoff_freq,
+                      std::vector<double>* denominators,
+                      std::vector<double>* numerators ) 
 {
   denominators->clear();
   numerators->clear();
@@ -41,7 +41,7 @@ void lp_first_order_coefficients(const double ts,
   // sanity check
   if (ts <= 0.0 || settling_time < 0.0 || dead_time < 0.0) 
   {
-    AERROR << "time cannot be negative";
+    // AERROR << "time cannot be negative";
     return;
   }
 
