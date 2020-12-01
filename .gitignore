@@ -1,8 +1,9 @@
-.vscode/
-./install/
+.vscode
+
+/install
 /build
-./archive/
-temp
+
+/temp
 
 /third_party/*
 /third_party_local/*
