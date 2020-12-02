@@ -2,8 +2,11 @@
 
 /install
 /build
+/devel
 
 /temp
 
 /third_party/*
 /third_party_local/*
+
+*.tmp

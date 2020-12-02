@@ -1,20 +1,25 @@
 #pragma once
 
-/**
- * @file pid_controller.h
- * @brief Defines the PIDController class.
- */
-
-#pragma once
-
-#include "modules/control/proto/pid_conf.pb.h"
+// #include "modules/control/proto/pid_conf.pb.h"
 
 /**
  * @namespace apollo::control
  * @brief apollo::control
  */
-namespace farispace {
+namespace fairspace {
 namespace control {
+
+//TODO(xiaochen-at-salfrod): Switch to yaml-cpp later
+struct PIDConf 
+{
+  bool integrator_enable;
+  double integrator_saturation_level;
+  double kp;
+  double ki;
+  double kd;
+  double kaw = 0.0;
+  double output_saturation_level;
+};
 
 /**
  * @class PIDController
@@ -28,14 +33,14 @@ class PIDController
    * @brief initialize pid controller
    * @param pid_conf configuration for pid controller
    */
-  void init(const PidConf &pid_conf);
+  void init(const PIDConf& pid_conf);
 
   /**
    * @brief set pid controller coefficients for the proportional,
    * integral, and derivative
    * @param pid_conf configuration for pid controller
    */
-  void set_PID(const PidConf &pid_conf);
+  void set_PID(const PIDConf& pid_conf);
 
   /**
    * @brief reset variables for pid controller
