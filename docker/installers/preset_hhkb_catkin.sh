@@ -5,10 +5,14 @@ set -e
 echo "Current user: $(whoami)"
 echo "Append ROS setup.bash to .bashrc"
 
-cd ~
+cd /home/hhkb
+
+echo "alias ls='ls --color=auto'" >> /home/hhkb/.bashrc
 
 cat <<-EOF > "/home/hhkb/.bashrc"
-if [[ -f devel/setup.bash ]]
+alias ls='ls --color=auto'
+
+if [[ -f .catkin_workspace ]]
 then
     echo "Detect a catkin workspace at $(pwd)"
     source devel/setup.bash
