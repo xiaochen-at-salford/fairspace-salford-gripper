@@ -7,8 +7,6 @@ echo "Append ROS setup.bash to .bashrc"
 
 cd /home/hhkb
 
-echo "alias ls='ls --color=auto'" >> /home/hhkb/.bashrc
-
 cat <<-EOF > "/home/hhkb/.bashrc"
 alias ls='ls --color=auto'
 
